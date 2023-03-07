@@ -44,7 +44,7 @@ class MediaViewModel(application: Application) : AndroidViewModel(application) {
     val mediaImages: StateFlow<List<Picture>> = _mediaImages
 
     fun fetchMediaImages() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
             val imageUris = mutableListOf<Picture>()
             getMediaImages().collect { imageUri ->
                 imageUris.add(imageUri)
